@@ -11,6 +11,23 @@
     "load",
     "testing"
   ],
+  "dependencies": {
+    "@oddnetworks/oddworks": "~3.10.0",
+    "bluebird": "~3.4.0",
+    "filepath": "~1.1.0",
+    "lodash": "~4.15.0",
+    "request": "~2.74.0",
+    "yargs": "~5.0.0"
+  },
+  "devDependencies": {
+    "xo": "~0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node"
+    ]
+  },
   "author": "Odd Networks, Inc.",
   "license": "Apache-2.0"
 }
