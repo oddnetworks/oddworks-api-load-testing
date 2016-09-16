@@ -7,6 +7,7 @@ const yargs = require('yargs');
 const filepath = require('filepath');
 const Client = require('./lib/client');
 const OddworksClient = require('./lib/oddworks-client');
+const Runner = require('./lib/runner');
 
 exports.main = function main() {
 	const args = yargs
@@ -14,6 +15,16 @@ exports.main = function main() {
 		.option('config', {
 			demand: true,
 			describe: 'Path to the JSON config file'
+		})
+		.option('rate', {
+			demand: true,
+			describe: 'Number of requests per minute',
+			type: 'number'
+		})
+		.option('limit', {
+			describe: 'Limit the number of requests',
+			default: 50,
+			type: 'number'
 		})
 		.help();
 
@@ -85,8 +96,17 @@ exports.main = function main() {
 			return Promise.all(promises);
 		})
 		.then(clients => {
-			const client = clients[0];
-			return client.makeNextRequest();
+			const runner = new Runner({
+				rate: argv.rate,
+				limit: argv.limit,
+				clients
+			});
+
+			runner.on('response', res => {
+				console.log(res);
+			});
+
+			return runner.run();
 		});
 };
 

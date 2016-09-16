@@ -6,11 +6,14 @@
   "scripts": {
     "test": "xo"
   },
-  "keywords": [
-    "oddworks",
-    "load",
-    "testing"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oddnetworks/oddworks-api-load-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oddnetworks/oddworks-api-load-testing/issues"
+  },
+  "homepage": "https://github.com/oddnetworks/oddworks-api-load-testing",
   "dependencies": {
     "@oddnetworks/oddworks": "~3.10.0",
     "bluebird": "~3.4.0",
@@ -29,5 +32,10 @@
     ]
   },
   "author": "Odd Networks, Inc.",
+  "keywords": [
+    "oddworks",
+    "load",
+    "testing"
+  ],
   "license": "Apache-2.0"
 }
