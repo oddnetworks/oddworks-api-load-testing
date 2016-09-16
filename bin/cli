@@ -3,11 +3,7 @@
 
 const cli = require('../cli');
 
-cli.main()
-	.then(() => {
-		console.log('DONE :-)');
-	})
-	.catch(err => {
-		console.error('Experienced an error:');
-		console.error(err.stack || err.message || err);
-	});
+cli.main().catch(err => {
+	console.error('Experienced an error:');
+	console.error(err.stack || err.message || err);
+});

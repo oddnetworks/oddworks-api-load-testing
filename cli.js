@@ -96,14 +96,21 @@ exports.main = function main() {
 			return Promise.all(promises);
 		})
 		.then(clients => {
+			let pending = 0;
+
 			const runner = new Runner({
 				rate: argv.rate,
 				limit: argv.limit,
 				clients
 			});
 
+			runner.on('request', () => {
+				pending += 1;
+			});
+
 			runner.on('response', res => {
-				console.log(res);
+				pending -= 1;
+				outputResponse(pending, res);
 			});
 
 			return runner.run();
@@ -126,4 +133,12 @@ function loadConfigs(path) {
 		}
 		return config;
 	});
+}
+
+function outputResponse(pending, res) {
+	const latency = res.end - res.start;
+	const method = res.method;
+	const status = res.status;
+	const path = res.uri.path;
+	console.log('%s,%s,"%s",%s,"%s"', pending, latency, method, status, path);
 }
