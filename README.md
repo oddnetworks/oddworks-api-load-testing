@@ -16,7 +16,21 @@ bin/cli --config ~/path/to/my/config.json --rate 60 --limit 120
 
 The command above will use config.json to configure platforms clients and the target endpoints. It will send HTTP requests to the endpoints at 60 requests per minute until 120 requests are made.
 
-__Example config file:__
+See [Example Config File](#example-config-file) below for more details on the config file.
+
+### Usage
+
+```
+$ bin/cli --config <filepath> --rate <number> --limit <number>
+```
+
+Get help using
+
+```
+$ bin/cli --help
+```
+
+### Example Config File
 ```json
 {
     "jwtSecret": "shuuuuuuush",
