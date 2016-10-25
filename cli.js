@@ -140,5 +140,9 @@ function outputResponse(pending, res) {
 	const method = res.method;
 	const status = res.status;
 	const path = res.uri.path;
+	if (status !== 200) {
+		console.error(`Unexpected ${status} response:`);
+		console.error(res.body);
+	}
 	console.log('%s,%s,"%s",%s,"%s"', pending, latency, method, status, path);
 }
